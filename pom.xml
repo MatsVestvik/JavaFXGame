@@ -40,7 +40,7 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.8</version>
 				<configuration>
-					<mainClass>com.example.game.GameMain</mainClass>
+					<mainClass>code.Main</mainClass>
 					<!-- JVM args to enable native access for JavaFX on recent JDKs -->
 					<jvmArgs>--enable-native-access=javafx.graphics</jvmArgs>
 				</configuration>
