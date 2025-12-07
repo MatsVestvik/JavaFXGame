@@ -1,6 +1,7 @@
 package code;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,35 +10,34 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    Group root = new Group();
+
+    private void addImage(String imagePath) {
+        Image img = new Image(getClass().getResourceAsStream(imagePath));
+        ImageView imgView = new ImageView(img);
+        imgView.setFitWidth(500);
+        imgView.setPreserveRatio(true);
+        root.getChildren().add(imgView);
+    }
     
     @Override
     public void start(Stage primaryStage) {
-        // Load an image from file system
-        //Image image = new Image("file:resources/Basic_Character.gif");  // From current directory
+        addImage("/resources/Basic_Character.gif");
+        addImage("/resources/Basic_Helmet_2.gif");
+        addImage("/resources/Basic_Chestplate.gif");
+        addImage("/resources/Basic_Pants.gif");
+        addImage("/resources/Basic_Shoes.gif");
         
-        // OR load from resources folder (inside your project)
-        Image image = new Image(getClass().getResourceAsStream("/resources/Basic_Character.gif"));
+        Scene scene = new Scene(root, 500, 500);
         
-        // Create ImageView to display the image
-        ImageView imageView = new ImageView(image);
-        
-        // Optional: Set image size
-        imageView.setFitWidth(300);
-        imageView.setFitHeight(200);
-        imageView.setPreserveRatio(true); // Keep aspect ratio
-        
-        // Use VBox to stack label and image vertically
-        VBox root = new VBox(10, imageView); // 10 is spacing
-        root.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        
-        Scene scene = new Scene(root, 400, 350);
-        
-        primaryStage.setTitle("JavaFX Window with Image");
+        primaryStage.setTitle("Character with Helmet Overlay");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     
     public static void main(String[] args) {
+        System.out.println("Main.main() starting - calling Application.launch");
+        System.out.flush();
         launch(args);
     }
 }
