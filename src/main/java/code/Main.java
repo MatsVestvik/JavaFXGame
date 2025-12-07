@@ -3,33 +3,21 @@ package code;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-    Group characterGroup = new Group();
-    private int clickCount = 0;
-    private Label clickLabel;
+import code.Objects.Character;
 
-    /**
-     * Add an image to the character group.
-     * @param imagePath
-     */
-    private void addImage(String imagePath) {
-        Image img = new Image(getClass().getResourceAsStream(imagePath));
-        ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(500);
-        imgView.setPreserveRatio(true);
-        characterGroup.getChildren().add(imgView);
-    }
+public class Main extends Application {
+    
+    private int clickCount = 0;
+    ColorAdjust rarityEffect = new ColorAdjust();
+
+    Character character = new Character();
     
     /**
      * Start the JavaFX application.
@@ -37,8 +25,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Add character images
-        addImage("/resources/Basic_Background.png");
-        addImage("/resources/Basic_Character.gif");
+        character.addImage("/resources/Basic_Background.png");
+        character.addImage("/resources/Basic_Character.gif");
         
         
         
@@ -51,22 +39,23 @@ public class Main extends Application {
             clickCount++;
             
             if (clickCount == 1) {
-                addImage("/resources/Basic_Helmet_2.gif");
+                character.equipHelmet("/resources/Basic_Helmet_2.gif", 1, 10);
             }
             else if (clickCount == 2) {
-                addImage("/resources/Basic_Chestplate.gif");
+                character.equipChestplate("/resources/Basic_Chestplate.gif", 2, 20);
+                rarityEffect.setHue(1); // Apply blue hue effect to indicate rarity
             }
             else if (clickCount == 3) {
-                addImage("/resources/Basic_Pants.gif");
+                character.equipPants("/resources/Basic_Pants.gif", 1, 15);
             }
             else if (clickCount == 4) {
-                addImage("/resources/Basic_Shoes.gif");
+                character.equipShoes("/resources/Basic_Shoes.gif", 1, 10);
             }
             else if (clickCount > 4) {
                 clickCount = 0;
-                characterGroup.getChildren().clear();
-                addImage("/resources/Basic_Background.png");
-                addImage("/resources/Basic_Character.gif");
+                character.characterGroup.getChildren().clear();
+                character.addImage("/resources/Basic_Background.png");
+                character.addImage("/resources/Basic_Character.gif");
                 
             }
         });
@@ -80,7 +69,7 @@ public class Main extends Application {
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
-        root.setCenter(characterGroup);  // Character in center
+        root.setCenter(character.characterGroup);  // Character in center
         root.setBottom(bottomContainer); // Button at bottom
         
         Scene scene = new Scene(root, 500, 600); // Increased height for button
