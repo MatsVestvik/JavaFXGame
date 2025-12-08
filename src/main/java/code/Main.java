@@ -1,18 +1,19 @@
 package code;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import code.Inventory.InventoryGrid;
 import code.Objects.Character;
 import code.Objects.Inventory;
 import code.Util.CharacterScene;
 import code.Util.SideBar;
-import code.Util.InventoryView;
 
 public class Main extends Application {
 
@@ -39,15 +40,29 @@ public class Main extends Application {
         
 
         SideBar sideBar = new SideBar();
-        InventoryView inventoryView = new InventoryView();
+        
+        InventoryGrid inventoryGrid = new InventoryGrid(4, 4, 80);
+        
+        // Set click listener
+        inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
+            System.out.println("Slot " + slotIndex + " clicked!");
+            if (itemData != null) {
+                System.out.println("Item: " + itemData);
+                // Here you can show item details, use item, etc.
+            }
+        });
+        
+        // Add some example items
+        inventoryGrid.addItemToSlot(0, "/resources/Basic_Helmet_2.gif", "Basic Helmet");
+        inventoryGrid.addItemToSlot(1, "/resources/Basic_Chestplate.gif", "Basic Chestplate");
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
         root.setCenter(characterScene.getSceneGroup());  // Character in center
         root.setLeft(sideBar.getSideBarGroup()); // Sidebar on the left
-        root.setRight(inventoryView.getInventoryGroup()); // Inventory on the right
+        root.setRight(inventoryGrid.getGrid()); // Inventory on the right
         
-        Scene scene = new Scene(root, 800, 500); // Increased height for button
+        Scene scene = new Scene(root, 1000, 500); // Increased height for button
         
         primaryStage.setTitle("Character with Armour Overlay and Controls");
         primaryStage.setScene(scene);
