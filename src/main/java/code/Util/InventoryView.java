@@ -14,7 +14,7 @@ public class InventoryView {
         InventoryBar.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-border-width: 1 0 0 0;");
     }
 
-    public HBox getInventoryBar() {
+    public HBox getInventoryGroup() {
         return InventoryBar;
     }
 

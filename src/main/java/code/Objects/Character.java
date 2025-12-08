@@ -8,10 +8,10 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import code.Util.Scene;
+import code.Util.CharacterScene;
 
 public class Character {
-    Scene scene = new Scene();
+    CharacterScene scene = new CharacterScene();
 
     
     ColorAdjust rarityEffect = new ColorAdjust();
@@ -26,7 +26,7 @@ public class Character {
         }
     }
 
-    public Scene getCharacterScene() {
+    public CharacterScene getCharacterScene() {
         return scene;
     }
 

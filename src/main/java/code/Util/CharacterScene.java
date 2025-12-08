@@ -9,11 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class Scene {
+public class CharacterScene {
     HBox sceneBox;
     public Group sceneGroup = new Group();
     
-    public Scene() {
+    public CharacterScene() {
         sceneBox = new HBox(20); // 20px spacing
         sceneBox.setAlignment(Pos.CENTER);
         sceneBox.setPadding(new Insets(15));
@@ -45,5 +45,9 @@ public class Scene {
         imgView.setFitWidth(500);
         imgView.setPreserveRatio(true);
         sceneGroup.getChildren().add(imgView);
+    }
+
+    public Group getSceneGroup() {
+        return sceneGroup;
     }
 }

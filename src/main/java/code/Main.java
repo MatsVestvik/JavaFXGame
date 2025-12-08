@@ -10,19 +10,13 @@ import javafx.stage.Stage;
 
 import code.Objects.Character;
 import code.Objects.Inventory;
+import code.Util.CharacterScene;
 import code.Util.SideBar;
+import code.Util.InventoryView;
 
 public class Main extends Application {
-    
-    private int clickCount = 0;
-    ColorAdjust rarityEffect = new ColorAdjust();
 
     Character character = new Character();
-
-    private int hatCounter = 0;
-    private int chestCounter = 0;
-    private int pantsCounter = 0;
-    private int shoesCounter = 0;
     
     /**
      * Start the JavaFX application.
@@ -38,17 +32,17 @@ public class Main extends Application {
         character.equipArmor(inventory.getArmorByType("Shoes"));
 
 
-        scene = character.getCharacterScene();
+        CharacterScene characterScene = character.getCharacterScene();
         SideBar sideBar = new SideBar();
         InventoryView inventoryView = new InventoryView();
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
-        root.setCenter(scene.sceneGroup);  // Character in center
+        root.setCenter(characterScene.getSceneGroup());  // Character in center
         root.setLeft(sideBar.getSideBarGroup()); // Sidebar on the left
         root.setRight(inventoryView.getInventoryGroup()); // Inventory on the right
         
-        Scene scene = new Scene(root, 700, 500); // Increased height for button
+        Scene scene = new Scene(root, 800, 500); // Increased height for button
         
         primaryStage.setTitle("Character with Armour Overlay and Controls");
         primaryStage.setScene(scene);
