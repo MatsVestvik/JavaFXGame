@@ -30,13 +30,6 @@ public class Main extends Application {
         CharacterScene characterScene = character.getCharacterScene();
         characterScene.addItem("/resources/Basic_Background.png");
         characterScene.addItem("/resources/Basic_Character.gif");
-         
-        character.equipArmor(inventory.getArmorByType("Helmet"));
-        character.equipArmor(inventory.getArmorByType("Chestplate"));
-        character.equipArmor(inventory.getArmorByType("Pants"));
-        character.equipArmor(inventory.getArmorByType("Shoes"));
-        
-
         
 
         SideBar sideBar = new SideBar();
@@ -46,6 +39,8 @@ public class Main extends Application {
         // Set click listener
         inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
             System.out.println("Slot " + slotIndex + " clicked!");
+            
+
             if (itemData != null) {
                 System.out.println("Item: " + itemData);
                 // Here you can show item details, use item, etc.
