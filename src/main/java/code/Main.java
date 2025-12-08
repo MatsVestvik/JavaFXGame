@@ -26,13 +26,17 @@ public class Main extends Application {
         Inventory inventory = new Inventory();
 
         Character character = new Character();
+        CharacterScene characterScene = character.getCharacterScene();
+        characterScene.addItem("/resources/Basic_Background.png");
+        characterScene.addItem("/resources/Basic_Character.gif");
         character.equipArmor(inventory.getArmorByType("Helmet"));
         character.equipArmor(inventory.getArmorByType("Chestplate"));
         character.equipArmor(inventory.getArmorByType("Pants"));
         character.equipArmor(inventory.getArmorByType("Shoes"));
 
 
-        CharacterScene characterScene = character.getCharacterScene();
+        
+
         SideBar sideBar = new SideBar();
         InventoryView inventoryView = new InventoryView();
         
