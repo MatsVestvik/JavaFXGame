@@ -17,7 +17,17 @@ public class Inventory {
         items.add(pants);
         items.add(shoes);
     }
+
     public List<Armor> getItems() {
         return items;
+    }
+
+    public Armor getArmorByType(String type) {
+        for (Armor armor : items) {
+            if (armor.type().equals(type)) {
+                return armor;
+            }
+        }
+        return null;
     }
 }

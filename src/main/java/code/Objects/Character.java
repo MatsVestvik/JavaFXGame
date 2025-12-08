@@ -8,7 +8,10 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import code.Util.Scene;
+
 public class Character {
+    Scene scene = new Scene();
 
     
     ColorAdjust rarityEffect = new ColorAdjust();
@@ -21,6 +24,10 @@ public class Character {
         for (int i = 0; i < 4; i++) {
             equippedArmor.add(null);
         }
+    }
+
+    public Scene getCharacterScene() {
+        return scene;
     }
 
     public void equipArmor(Armor armor) {
@@ -37,7 +44,8 @@ public class Character {
             else if (armor.type().equals("Shoes")) {
                 equippedArmor.set(3, armor);
             }
-            addImage(armor.getImagePath());
+
+            scene.addItem(armor.getImagePath());
             shield += armor.getShield();
         }
     }
@@ -47,7 +55,7 @@ public class Character {
             int index = equippedArmor.indexOf(armor);
             equippedArmor.set(index, null);
             shield -= armor.getShield();
-            removeImage(armor.getImagePath());
+            scene.removeItem(armor.getImagePath());
         }
     }
 

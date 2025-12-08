@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import code.Objects.Character;
+import code.Objects.Inventory;
 import code.Util.SideBar;
 
 public class Main extends Application {
@@ -28,30 +29,24 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        // Add character images
-        character.addImage("/resources/Basic_Background.png");
-        character.addImage("/resources/Basic_Character.gif");
-        
-        
-        // Create a container for the button and label at the bottom
+        Inventory inventory = new Inventory();
+
+        Character character = new Character();
+        character.equipArmor(inventory.getArmorByType("Helmet"));
+        character.equipArmor(inventory.getArmorByType("Chestplate"));
+        character.equipArmor(inventory.getArmorByType("Pants"));
+        character.equipArmor(inventory.getArmorByType("Shoes"));
+
+
+        scene = character.getCharacterScene();
         SideBar sideBar = new SideBar();
-        HBox bottomContainer = sideBar.createSideBar();
-
-        sideBar.getButton(0).setOnAction(event -> {
-            hatCounter++;
-
-            if (hatCounter%2!=0) {
-                character.equipHelmet("/resources/Basic_Helmet_2.gif", 1, 10);
-            }
-            else if (hatCounter%2==0) {
-                character.characterGroup.getChildren().clear();
-            }
-        });
+        InventoryView inventoryView = new InventoryView();
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
-        root.setCenter(character.characterGroup);  // Character in center
-        root.setLeft(bottomContainer); // Button at bottom
+        root.setCenter(scene.sceneGroup);  // Character in center
+        root.setLeft(sideBar.getSideBarGroup()); // Sidebar on the left
+        root.setRight(inventoryView.getInventoryGroup()); // Inventory on the right
         
         Scene scene = new Scene(root, 700, 500); // Increased height for button
         
