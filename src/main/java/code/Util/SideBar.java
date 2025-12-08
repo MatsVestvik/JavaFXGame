@@ -6,16 +6,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Box;
 
 public class SideBar {
 
     private List<Button> buttons;
-    HBox sideBar;
+    VBox sideBar;
 
     public SideBar() {
-        sideBar = new HBox(20); // 20px spacing
+        sideBar = new VBox(20); // 20px spacing
         sideBar.setAlignment(Pos.CENTER);
         sideBar.setPadding(new Insets(15));
         sideBar.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-border-width: 1 0 0 0;");
@@ -29,7 +29,7 @@ public class SideBar {
         sideBar.getChildren().addAll(buttons);
     }
 
-    public HBox getSideBarGroup() {
+    public VBox getSideBarGroup() {
         return sideBar;
     }
 }
