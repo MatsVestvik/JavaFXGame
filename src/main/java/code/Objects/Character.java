@@ -2,11 +2,7 @@ package code.Objects;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javafx.scene.Group;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import code.Util.CharacterScene;
 
@@ -17,12 +13,11 @@ public class Character {
     ColorAdjust rarityEffect = new ColorAdjust();
 
     private int shield = 0;
-    private List<Armor> equippedArmor = new ArrayList<>();
-    private final int MAX_ARMOR_PIECES = 4;
+    private List<Armour> equippedArmour = new ArrayList<>();
 
     public Character() {
         for (int i = 0; i < 4; i++) {
-            equippedArmor.add(null);
+            equippedArmour.add(null);
         }
     }
 
@@ -30,32 +25,32 @@ public class Character {
         return scene;
     }
 
-    public void equipArmor(Armor armor) {
-        int slotIndex = getSlotIndexForArmorType(armor.type());
+    public void equipArmour(Armour armour) {
+        int slotIndex = getSlotIndexForArmorType(armour.getType());
         
         if (slotIndex == -1) {
-            System.out.println("Invalid armor type: " + armor.type());
+            System.out.println("Invalid armor type: " + armour.getType());
             return;
         }
         
         // Check if slot is occupied
-        if (equippedArmor.get(slotIndex) != null) {
-            System.out.println(armor.type() + " slot is already occupied!");
+        if (equippedArmour.get(slotIndex) != null) {
+            System.out.println(armour.getType() + " slot is already occupied!");
             return;
         }
         
         // Equip the armor
-        equippedArmor.set(slotIndex, armor);
+        equippedArmour.set(slotIndex, armour);
         
         // Add to scene
         if (scene != null) {
-            scene.addItem(armor.getImagePath());
+            scene.addItem(armour.getImagePath());
         } else {
             System.out.println("Scene is not set!");
         }
         
         // Update shield
-        shield += armor.getShield();
+        shield += armour.getShield();
     }
 
     private int getSlotIndexForArmorType(String armorType) {
@@ -68,14 +63,17 @@ public class Character {
         }
     }
 
-    public void unequipArmor(Armor armor) {
-        if (equippedArmor.contains(armor)) {
-            int index = equippedArmor.indexOf(armor);
-            equippedArmor.set(index, null);
-            shield -= armor.getShield();
-            scene.removeItem(armor.getImagePath());
+    public void unequipArmour(Armour armour) {
+        if (equippedArmour.contains(armour)) {
+            int index = equippedArmour.indexOf(armour);
+            equippedArmour.set(index, null);
+            shield -= armour.getShield();
+            scene.removeItem(armour.getImagePath());
         }
     }
 
+    public int getShield() {
+        return shield;
+    }
 
 }

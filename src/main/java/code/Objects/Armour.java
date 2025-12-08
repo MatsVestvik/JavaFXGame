@@ -1,12 +1,12 @@
 package code.Objects;
 
-public class Armor {
+public class Armour {
     private String imagePath;
     private int shield;
     private int rarity;
     private final String type;
 
-    public Armor(String imagePath, int rarity, int shield, String type) {
+    public Armour(String imagePath, int rarity, int shield, String type) {
         this.shield = shield;
         this.imagePath = imagePath;
         this.rarity = rarity;
@@ -24,7 +24,7 @@ public class Armor {
     public int getShield() {
         return shield;
     }
-    public String type() {
+    public String getType() {
         return type;
     }
 }

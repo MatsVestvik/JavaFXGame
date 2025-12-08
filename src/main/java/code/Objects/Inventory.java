@@ -4,28 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private List<Armor> items = new ArrayList<>();
-    private final int maxCapacity = 20;
+    private List<Armour> items = new ArrayList<>();
 
     public Inventory() {
-        Armor helmet = new Armor("/resources/Basic_Helmet_2.gif", 1, 10, "Helmet");
-        Armor chestplate = new Armor("/resources/Basic_Chestplate.gif", 1, 15, "Chestplate");
-        Armor pants = new Armor("/resources/Basic_Pants.gif", 1, 12, "Pants");
-        Armor shoes = new Armor("/resources/Basic_Shoes.gif", 1, 8, "Shoes");   
+        Armour helmet = new Armour("/resources/Basic_Helmet_2.gif", 1, 10, "Helmet");
+        Armour chestplate = new Armour("/resources/Basic_Chestplate.gif", 1, 15, "Chestplate");
+        Armour pants = new Armour("/resources/Basic_Pants.gif", 1, 12, "Pants");
+        Armour shoes = new Armour("/resources/Basic_Shoes.gif", 1, 8, "Shoes");   
         items.add(helmet);
         items.add(chestplate);
         items.add(pants);
         items.add(shoes);
     }
 
-    public List<Armor> getItems() {
+    public List<Armour> getItems() {
         return items;
     }
 
-    public Armor getArmorByType(String type) {
-        for (Armor armor : items) {
-            if (armor.type().equals(type)) {
-                return armor;
+    public Armour getArmourByType(String type) {
+        for (Armour armour : items) {
+            if (armour.getType().equals(type)) {
+                return armour;
             }
         }
         return null;

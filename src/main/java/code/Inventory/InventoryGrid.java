@@ -2,15 +2,11 @@ package code.Inventory;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+
+import code.Objects.Armour;
 
 public class InventoryGrid {
     private GridPane grid;
@@ -51,22 +47,33 @@ public class InventoryGrid {
     }
     
     // Add an item to a specific slot
-    public boolean addItemToSlot(int slotIndex, String imagePath, Object itemData) {
+    public boolean addItemToSlot(int slotIndex, Armour armour) {
         if (slotIndex < 0 || slotIndex >= slots.size()) {
             return false;
         }
-        return slots.get(slotIndex).setItem(imagePath, itemData);
+        return slots.get(slotIndex).setItem(armour.getImagePath(), armour.getType());
     }
     
     // Add item to first available slot
-    public int addItemToFirstAvailable(String imagePath, Object itemData) {
+    public int addItemToFirstAvailable(Armour armour) {
         for (InventorySlot slot : slots) {
             if (slot.isEmpty()) {
-                slot.setItem(imagePath, itemData);
+                slot.setItem(armour.getImagePath(), armour.getType());
                 return slot.getSlotIndex();
             }
         }
         return -1; // No available slots
+    }
+
+    public Armour getItemFromSlot(int slotIndex) {
+        if (slotIndex < 0 || slotIndex >= slots.size()) {
+            return null;
+        }
+        Object data = slots.get(slotIndex).getItemData();
+        if (data instanceof Armour) {
+            return (Armour) data;
+        }
+        return null;
     }
     
     // Remove item from slot
