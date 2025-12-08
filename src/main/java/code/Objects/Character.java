@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import code.Util.CharacterScene;
 
 public class Character {
-    CharacterScene scene = new CharacterScene();
+    public CharacterScene scene = new CharacterScene();
 
     
     ColorAdjust rarityEffect = new ColorAdjust();
@@ -31,22 +31,40 @@ public class Character {
     }
 
     public void equipArmor(Armor armor) {
-        if (equippedArmor.size() < MAX_ARMOR_PIECES) {
-            if (armor.type().equals("Helmet")) {
-                equippedArmor.set(0, armor);
-            }
-            else if (armor.type().equals("Chestplate")) {
-                equippedArmor.set(1, armor);
-            }
-            else if (armor.type().equals("Pants")) {
-                equippedArmor.set(2, armor);
-            }
-            else if (armor.type().equals("Shoes")) {
-                equippedArmor.set(3, armor);
-            }
-
+        int slotIndex = getSlotIndexForArmorType(armor.type());
+        
+        if (slotIndex == -1) {
+            System.out.println("Invalid armor type: " + armor.type());
+            return;
+        }
+        
+        // Check if slot is occupied
+        if (equippedArmor.get(slotIndex) != null) {
+            System.out.println(armor.type() + " slot is already occupied!");
+            return;
+        }
+        
+        // Equip the armor
+        equippedArmor.set(slotIndex, armor);
+        
+        // Add to scene
+        if (scene != null) {
             scene.addItem(armor.getImagePath());
-            shield += armor.getShield();
+        } else {
+            System.out.println("Scene is not set!");
+        }
+        
+        // Update shield
+        shield += armor.getShield();
+    }
+
+    private int getSlotIndexForArmorType(String armorType) {
+        switch (armorType.toLowerCase()) {
+            case "helmet": return 0;
+            case "chestplate": return 1;
+            case "pants": return 2;
+            case "shoes": return 3;
+            default: return -1;
         }
     }
 
