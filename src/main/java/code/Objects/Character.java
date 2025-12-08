@@ -9,52 +9,47 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Character {
-    private int helmet;
-    private int chestplate;
-    private int pants;
-    private int shoes;
-    public Group characterGroup = new Group();
+
+    
     ColorAdjust rarityEffect = new ColorAdjust();
+
+    private int shield = 0;
     private List<Armor> equippedArmor = new ArrayList<>();
+    private final int MAX_ARMOR_PIECES = 4;
 
     public Character() {
-        this.helmet = 0;
-        this.chestplate = 0;
-        this.pants = 0;
-        this.shoes = 0;
+        for (int i = 0; i < 4; i++) {
+            equippedArmor.add(null);
+        }
     }
 
-    public void equipHelmet(String imagePath, int rarity, int shield) {
-        Armor helmet = new Armor(imagePath, rarity, shield);
-        equippedArmor.add(helmet);
-        this.helmet = 1;
-        addImage(imagePath);
-    }
-    public void equipChestplate(String imagePath, int rarity, int shield) {
-        Armor chestplate = new Armor(imagePath, rarity, shield);
-        equippedArmor.add(chestplate);
-        this.chestplate = 1;    
-        addImage(imagePath);
-    }
-    public void equipPants(String imagePath, int rarity, int shield) {
-        Armor pants = new Armor(imagePath, rarity, shield);
-        equippedArmor.add(pants);
-        this.pants = 1;
-        addImage(imagePath);
-    }
-    public void equipShoes(String imagePath, int rarity, int shield) {
-        Armor shoes = new Armor(imagePath, rarity, shield);
-        equippedArmor.add(shoes);
-        this.shoes = 1;
-        addImage(imagePath);
+    public void equipArmor(Armor armor) {
+        if (equippedArmor.size() < MAX_ARMOR_PIECES) {
+            if (armor.type().equals("Helmet")) {
+                equippedArmor.set(0, armor);
+            }
+            else if (armor.type().equals("Chestplate")) {
+                equippedArmor.set(1, armor);
+            }
+            else if (armor.type().equals("Pants")) {
+                equippedArmor.set(2, armor);
+            }
+            else if (armor.type().equals("Shoes")) {
+                equippedArmor.set(3, armor);
+            }
+            addImage(armor.getImagePath());
+            shield += armor.getShield();
+        }
     }
 
-    public void addImage(String imagePath) {
-        Image img = new Image(getClass().getResourceAsStream(imagePath));
-        ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(500);
-        imgView.setPreserveRatio(true);
-        characterGroup.getChildren().add(imgView);
-        imgView.setEffect(rarityEffect);
+    public void unequipArmor(Armor armor) {
+        if (equippedArmor.contains(armor)) {
+            int index = equippedArmor.indexOf(armor);
+            equippedArmor.set(index, null);
+            shield -= armor.getShield();
+            removeImage(armor.getImagePath());
+        }
     }
+
+
 }
