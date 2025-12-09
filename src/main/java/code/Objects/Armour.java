@@ -27,4 +27,14 @@ public class Armour {
     public String getType() {
         return type;
     }
+
+    public int getTypeAsInt() {
+        switch (type.toLowerCase()) {
+            case "helmet": return 0;
+            case "chestplate": return 1;
+            case "pants": return 2;
+            case "shoes": return 3;
+            default: return -1;
+        }
+    }
 }

@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-class InventorySlot {
+class EquippedSlot {
     private StackPane container;
     private Rectangle background;
     private ImageView imageView;
@@ -21,7 +21,7 @@ class InventorySlot {
     private int slotIndex;
     private boolean isEmpty;
     
-    public InventorySlot(int size, int slotIndex) {
+    public EquippedSlot(int size, int slotIndex) {
         this.slotIndex = slotIndex;
         this.isEmpty = true;
         
@@ -73,8 +73,8 @@ class InventorySlot {
         // Click handler
         container.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY) {
-                if (clickListenerInventory != null) {
-                    clickListenerInventory.onSlotClicked(slotIndex, item);
+                if (clickListenerEquipped != null) {
+                    clickListenerEquipped.onSlotClicked(slotIndex, item);
                 }
             } else if (e.getButton() == MouseButton.SECONDARY) {
                 // Right-click to clear?
@@ -116,10 +116,10 @@ class InventorySlot {
         return slotIndex;
     }
     
-    private InventoryGrid.SlotClickListener clickListenerInventory;
-    
-    public void setOnClickedInventory(InventoryGrid.SlotClickListener listener) {
-        this.clickListenerInventory = listener;
+    private EquippedGrid.SlotClickListener clickListenerEquipped;
+
+    public void setOnClickedEquipped(EquippedGrid.SlotClickListener listener) {
+        this.clickListenerEquipped = listener;
     }
 
     public boolean setItem(String imagePath, Armour armour) {

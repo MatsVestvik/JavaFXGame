@@ -4,10 +4,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import code.Inventory.EquippedGrid;
 import code.Inventory.InventoryGrid;
 import code.Objects.Character;
 import code.Objects.Inventory;
 import code.Util.CharacterScene;
+import code.Objects.Armour;
 
 public class Main extends Application {
 
@@ -31,6 +33,13 @@ public class Main extends Application {
         inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
             System.out.println("selected slot: " + slotIndex);
             character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex));
+        });
+
+        EquippedGrid equippedGrid = character.getEquippedGrid();
+
+        equippedGrid.setOnSlotClicked((slotIndex, itemData) -> {
+            System.out.println("unequipping slot: " + slotIndex);
+            character.unequipArmour(equippedGrid.getItemFromSlot(slotIndex));
         });
         
         // Add some example items

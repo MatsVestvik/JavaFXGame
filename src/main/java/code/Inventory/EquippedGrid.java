@@ -10,7 +10,7 @@ import code.Objects.Armour;
 
 public class EquippedGrid {
     private GridPane grid;
-    private List<InventorySlot> slots;
+    private List<EquippedSlot> slots;
     private int rows;
     private int cols;
     private int slotSize;
@@ -35,7 +35,7 @@ public class EquippedGrid {
         // Create slots in a grid pattern
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                InventorySlot slot = new InventorySlot(slotSize, row * cols + col);
+                EquippedSlot slot = new EquippedSlot(slotSize, row * cols + col);
                 slots.add(slot);
                 grid.add(slot.getContainer(), col, row);
             }
@@ -56,7 +56,7 @@ public class EquippedGrid {
     
     // Add item to first available slot
     public int addItemToFirstAvailable(Armour armour) {
-        for (InventorySlot slot : slots) {
+        for (EquippedSlot slot : slots) {
             if (slot.isEmpty()) {
                 slot.setItem(armour);
                 return slot.getSlotIndex();
@@ -94,18 +94,15 @@ public class EquippedGrid {
         return slots.get(slotIndex).isEmpty();
     }
     
-    // Set click handler for all slots
-    /*
     public void setOnSlotClicked(SlotClickListener listener) {
-        for (InventorySlot slot : slots) {
-            slot.setOnClicked(listener);
+        for (EquippedSlot slot : slots) {
+            slot.setOnClickedEquipped(listener);
         }
     }
-    */
 
     // Clear all slots
     public void clearAll() {
-        for (InventorySlot slot : slots) {
+        for (EquippedSlot slot : slots) {
             slot.clearItem();
         }
     }

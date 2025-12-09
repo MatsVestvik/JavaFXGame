@@ -97,7 +97,7 @@ public class InventoryGrid {
     // Set click handler for all slots
     public void setOnSlotClicked(SlotClickListener listener) {
         for (InventorySlot slot : slots) {
-            slot.setOnClicked(listener);
+            slot.setOnClickedInventory(listener);
         }
     }
     
