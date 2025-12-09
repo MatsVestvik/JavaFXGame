@@ -84,6 +84,8 @@ public class Character {
             equippedArmour.set(index, null);
             shield -= armour.getShield();
             scene.removeItem(armour.getImagePath());
+            equippedGrid.removeItemFromSlot(index);
+            inventoryGrid.addItemToFirstAvailable(armour);
         }
     }
 
