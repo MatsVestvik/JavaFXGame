@@ -33,6 +33,7 @@ public class Main extends Application {
         inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
             System.out.println("selected slot: " + slotIndex);
             character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex));
+            inventoryGrid.removeItemFromSlot(slotIndex);
         });
 
         EquippedGrid equippedGrid = character.getEquippedGrid();

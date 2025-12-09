@@ -55,7 +55,6 @@ public class Character {
         // Equip the armor
         equippedArmour.set(slotIndex, armour);
         equippedGrid.addItemToSlot(slotIndex, armour);
-        inventoryGrid.removeItemFromSlot(slotIndex);
         
         // Add to scene
         if (scene != null) {
