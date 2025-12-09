@@ -31,8 +31,8 @@ class InventorySlot {
     private void createSlot(int size) {
         // Create background
         background = new Rectangle(size, size);
-        background.setFill(Color.rgb(52, 73, 94));
-        background.setStroke(Color.rgb(44, 62, 80));
+        background.setFill(Color.rgb(46, 48, 50));
+        background.setStroke(Color.rgb(45, 48, 52));
         background.setStrokeWidth(2);
         background.setArcWidth(10);
         background.setArcHeight(10);
@@ -57,18 +57,18 @@ class InventorySlot {
         // Add hover effects
         container.setOnMouseEntered(e -> {
             if (isEmpty) {
-                background.setFill(Color.rgb(58, 83, 107));
+                background.setFill(Color.rgb(110, 110, 111));
             } else {
-                background.setStroke(Color.rgb(241, 196, 15));
+                background.setStroke(Color.rgb(74, 73, 75));
                 background.setStrokeWidth(3);
             }
         });
         
         container.setOnMouseExited(e -> {
             background.setFill(isEmpty ? 
-                Color.rgb(52, 73, 94) : 
-                Color.rgb(44, 62, 80));
-            background.setStroke(Color.rgb(44, 62, 80));
+                Color.rgb(61, 61, 61) : 
+                Color.rgb(46, 48, 50));
+            background.setStroke(Color.rgb(45, 48, 52));
             background.setStrokeWidth(2);
         });
         

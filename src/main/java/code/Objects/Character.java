@@ -5,9 +5,13 @@ import java.util.List;
 import javafx.scene.effect.ColorAdjust;
 
 import code.Util.CharacterScene;
+import code.Inventory.EquippedGrid;
+import code.Inventory.InventoryGrid;
 
 public class Character {
     public CharacterScene scene = new CharacterScene();
+    private EquippedGrid equippedGrid = new EquippedGrid(4, 2, 80);
+    private InventoryGrid inventoryGrid = new InventoryGrid(4, 4, 80);
 
     
     ColorAdjust rarityEffect = new ColorAdjust();
@@ -23,6 +27,14 @@ public class Character {
 
     public CharacterScene getCharacterScene() {
         return scene;
+    }
+
+    public EquippedGrid getEquippedGrid() {
+        return equippedGrid;
+    }
+
+    public InventoryGrid getInventoryGrid() {
+        return inventoryGrid;
     }
 
     public void equipArmour(Armour armour) {
@@ -42,6 +54,8 @@ public class Character {
         
         // Equip the armor
         equippedArmour.set(slotIndex, armour);
+        equippedGrid.addItemToSlot(slotIndex, armour);
+        inventoryGrid.removeItemFromSlot(slotIndex);
         
         // Add to scene
         if (scene != null) {

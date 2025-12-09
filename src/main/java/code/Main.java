@@ -25,7 +25,7 @@ public class Main extends Application {
         characterScene.addItem("/resources/Basic_Background.png");
         characterScene.addItem("/resources/Basic_Character.gif");
         
-        InventoryGrid inventoryGrid = new InventoryGrid(4, 4, 80);
+        InventoryGrid inventoryGrid = character.getInventoryGrid();
         
         // Set click listener
         inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
@@ -43,8 +43,9 @@ public class Main extends Application {
         BorderPane root = new BorderPane();
         root.setCenter(characterScene.getSceneGroup());  // Character in center
         root.setRight(inventoryGrid.getGrid()); // Inventory on the right
+        root.setLeft(character.getEquippedGrid().getGrid()); // Equipped items on the left
         
-        Scene scene = new Scene(root, 900, 500); // Increased height for button
+        Scene scene = new Scene(root, 1100, 500); // Increased height for button
         
         primaryStage.setTitle("Character with Armour Overlay and Controls");
         primaryStage.setScene(scene);
