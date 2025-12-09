@@ -29,21 +29,15 @@ public class Main extends Application {
         
         // Set click listener
         inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
-            System.out.println("Slot " + slotIndex + " clicked!");
-            if 
-            (inventoryGrid.getItemFromSlot(slotIndex) != null) {
-                System.out.println("Equipping item: " + inventoryGrid.getItemFromSlot(slotIndex).getType());
-                character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex));
-                System.out.println("Character shield is now: " + character.getShield());
-                inventoryGrid.removeItemFromSlot(slotIndex);
-            } else {
-                System.out.println("No item in this slot to equip.");
-            }
+            System.out.println("selected slot: " + slotIndex);
+            character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex));
         });
         
         // Add some example items
         inventoryGrid.addItemToSlot(0, inventory.getArmourByType("Helmet"));
         inventoryGrid.addItemToSlot(1, inventory.getArmourByType("Chestplate"));
+        inventoryGrid.addItemToSlot(2, inventory.getArmourByType("Pants"));
+        inventoryGrid.addItemToSlot(3, inventory.getArmourByType("Shoes"));
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();

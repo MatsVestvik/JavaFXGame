@@ -27,6 +27,7 @@ public class Character {
 
     public void equipArmour(Armour armour) {
         int slotIndex = getSlotIndexForArmorType(armour.getType());
+        System.out.println("Equipping...");
         
         if (slotIndex == -1) {
             System.out.println("Invalid armor type: " + armour.getType());

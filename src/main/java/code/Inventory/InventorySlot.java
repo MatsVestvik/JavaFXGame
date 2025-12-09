@@ -1,5 +1,6 @@
 package code.Inventory;
 
+import code.Objects.Armour;
 import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ class InventorySlot {
     private ImageView imageView;
     private Text slotNumberText;
     private Object itemData;
+    private Armour item; 
     private int slotIndex;
     private boolean isEmpty;
     
@@ -74,7 +76,7 @@ class InventorySlot {
         container.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY) {
                 if (clickListener != null) {
-                    clickListener.onSlotClicked(slotIndex, itemData);
+                    clickListener.onSlotClicked(slotIndex, item);
                 }
             } else if (e.getButton() == MouseButton.SECONDARY) {
                 // Right-click to clear?
@@ -83,34 +85,23 @@ class InventorySlot {
         });
     }
     
-    public boolean setItem(String imagePath, Object itemData) {
+    public boolean setItem(Armour armour) {
         try {
-            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            Image image = new Image(getClass().getResourceAsStream(armour.getImagePath()));
             imageView.setImage(image);
             imageView.setVisible(true);
             slotNumberText.setVisible(false);
-            this.itemData = itemData;
+            this.item = armour;
+            this.itemData = armour.getType();
             this.isEmpty = false;
             
             // Change background color when occupied
             background.setFill(Color.rgb(44, 62, 80));
             return true;
         } catch (Exception e) {
-            System.out.println("Failed to load image: " + imagePath);
+            System.out.println("Failed to load image: " + armour.getImagePath());
             return false;
         }
-    }
-    
-    public boolean clearItem() {
-        imageView.setImage(null);
-        imageView.setVisible(false);
-        slotNumberText.setVisible(true);
-        itemData = null;
-        isEmpty = true;
-        
-        // Reset background
-        background.setFill(Color.rgb(52, 73, 94));
-        return true;
     }
     
     public StackPane getContainer() {
@@ -133,5 +124,37 @@ class InventorySlot {
     
     public void setOnClicked(InventoryGrid.SlotClickListener listener) {
         this.clickListener = listener;
+    }
+
+        public boolean setItem(String imagePath, Armour armour) {
+        try {
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            imageView.setImage(image);
+            imageView.setVisible(true);
+            slotNumberText.setVisible(false);
+            this.item = armour;  // Store the Armour object
+            this.isEmpty = false;
+            
+            background.setFill(Color.rgb(44, 62, 80));
+            return true;
+        } catch (Exception e) {
+            System.out.println("Failed to load image: " + imagePath);
+            return false;
+        }
+    }
+    
+    public Armour getArmour() {
+        return item;
+    }
+    
+    public boolean clearItem() {
+        imageView.setImage(null);
+        imageView.setVisible(false);
+        slotNumberText.setVisible(true);
+        this.item = null;  // Clear the Armour object
+        isEmpty = true;
+        
+        background.setFill(Color.rgb(52, 73, 94));
+        return true;
     }
 }

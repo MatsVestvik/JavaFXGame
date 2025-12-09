@@ -51,14 +51,14 @@ public class InventoryGrid {
         if (slotIndex < 0 || slotIndex >= slots.size()) {
             return false;
         }
-        return slots.get(slotIndex).setItem(armour.getImagePath(), armour.getType());
+        return slots.get(slotIndex).setItem(armour);
     }
     
     // Add item to first available slot
     public int addItemToFirstAvailable(Armour armour) {
         for (InventorySlot slot : slots) {
             if (slot.isEmpty()) {
-                slot.setItem(armour.getImagePath(), armour.getType());
+                slot.setItem(armour);
                 return slot.getSlotIndex();
             }
         }
@@ -66,14 +66,8 @@ public class InventoryGrid {
     }
 
     public Armour getItemFromSlot(int slotIndex) {
-        if (slotIndex < 0 || slotIndex >= slots.size()) {
-            return null;
-        }
-        Object data = slots.get(slotIndex).getItemData();
-        if (data instanceof Armour) {
-            return (Armour) data;
-        }
-        return null;
+        Armour armour = slots.get(slotIndex).getArmour();
+        return armour;
     }
     
     // Remove item from slot
