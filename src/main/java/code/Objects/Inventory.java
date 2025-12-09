@@ -11,10 +11,12 @@ public class Inventory {
         Armour chestplate = new Armour("/resources/Basic_Chestplate.gif", 1, 15, "Chestplate");
         Armour pants = new Armour("/resources/Basic_Pants.gif", 1, 12, "Pants");
         Armour shoes = new Armour("/resources/Basic_Shoes.gif", 1, 8, "Shoes");   
+        Armour shield = new Armour("/resources/Basic_Shield.gif", 1, 20, "Shield");
         items.add(helmet);
         items.add(chestplate);
         items.add(pants);
         items.add(shoes);
+        items.add(shield);
     }
 
     public List<Armour> getItems() {

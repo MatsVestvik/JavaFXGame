@@ -20,7 +20,7 @@ public class Character {
     private List<Armour> equippedArmour = new ArrayList<>();
 
     public Character() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             equippedArmour.add(null);
         }
     }
@@ -47,13 +47,13 @@ public class Character {
         }
         
         // Check if slot is occupied
-        if (equippedArmour.get(slotIndex/2) != null) {
+        if (equippedArmour.get(getSlotIndexForArmorType(armour.getType())) != null) {
             System.out.println(armour.getType() + " slot is already occupied!");
             return;
         }
         System.out.println("Equipped " + armour.getType() + " in slot " + slotIndex);
         // Equip the armor
-        equippedArmour.set(slotIndex/2, armour);
+        equippedArmour.set(getSlotIndexForArmorType(armour.getType()), armour);
         equippedGrid.addItemToSlot(slotIndex, armour);
         
         // Add to scene
@@ -72,6 +72,7 @@ public class Character {
             case "helmet": return 0;
             case "chestplate": return 2;
             case "pants": return 4;
+            case "shield": return 5;
             case "shoes": return 6;
             default: return -1;
         }
@@ -79,11 +80,11 @@ public class Character {
 
     public void unequipArmour(Armour armour) {
         if (equippedArmour.contains(armour)) {
-            int index = equippedArmour.indexOf(armour);
+            int index = getSlotIndexForArmorType(armour.getType());
             equippedArmour.set(index, null);
             shield -= armour.getShield();
             scene.removeItem(armour.getImagePath());
-            equippedGrid.removeItemFromSlot(armour.getTypeAsInt());
+            equippedGrid.removeItemFromSlot(index);
             inventoryGrid.addItemToFirstAvailable(armour);
         }
     }

@@ -34,6 +34,7 @@ public class Main extends Application {
             System.out.println("selected slot: " + slotIndex);
             character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex));
             inventoryGrid.removeItemFromSlot(slotIndex);
+            System.out.println(character.getShield());
         });
 
         EquippedGrid equippedGrid = character.getEquippedGrid();
@@ -48,6 +49,7 @@ public class Main extends Application {
         inventoryGrid.addItemToSlot(1, inventory.getArmourByType("Chestplate"));
         inventoryGrid.addItemToSlot(2, inventory.getArmourByType("Pants"));
         inventoryGrid.addItemToSlot(3, inventory.getArmourByType("Shoes"));
+        inventoryGrid.addItemToSlot(4, inventory.getArmourByType("Shield"));
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
