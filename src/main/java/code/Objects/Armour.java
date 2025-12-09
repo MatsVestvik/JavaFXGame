@@ -31,9 +31,9 @@ public class Armour {
     public int getTypeAsInt() {
         switch (type.toLowerCase()) {
             case "helmet": return 0;
-            case "chestplate": return 1;
-            case "pants": return 2;
-            case "shoes": return 3;
+            case "chestplate": return 2;
+            case "pants": return 4;
+            case "shoes": return 6;
             default: return -1;
         }
     }

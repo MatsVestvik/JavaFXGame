@@ -47,13 +47,13 @@ public class Character {
         }
         
         // Check if slot is occupied
-        if (equippedArmour.get(slotIndex) != null) {
+        if (equippedArmour.get(slotIndex/2) != null) {
             System.out.println(armour.getType() + " slot is already occupied!");
             return;
         }
-        
+        System.out.println("Equipped " + armour.getType() + " in slot " + slotIndex);
         // Equip the armor
-        equippedArmour.set(slotIndex, armour);
+        equippedArmour.set(slotIndex/2, armour);
         equippedGrid.addItemToSlot(slotIndex, armour);
         
         // Add to scene
@@ -70,9 +70,9 @@ public class Character {
     private int getSlotIndexForArmorType(String armorType) {
         switch (armorType.toLowerCase()) {
             case "helmet": return 0;
-            case "chestplate": return 1;
-            case "pants": return 2;
-            case "shoes": return 3;
+            case "chestplate": return 2;
+            case "pants": return 4;
+            case "shoes": return 6;
             default: return -1;
         }
     }
@@ -83,7 +83,7 @@ public class Character {
             equippedArmour.set(index, null);
             shield -= armour.getShield();
             scene.removeItem(armour.getImagePath());
-            equippedGrid.removeItemFromSlot(index);
+            equippedGrid.removeItemFromSlot(armour.getTypeAsInt());
             inventoryGrid.addItemToFirstAvailable(armour);
         }
     }

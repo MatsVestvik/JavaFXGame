@@ -45,10 +45,15 @@ public class EquippedGrid {
     public GridPane getGrid() {
         return grid;
     }
+    public List<EquippedSlot> getSlots() {
+        return slots;
+    }
     
     // Add an item to a specific slot
     public boolean addItemToSlot(int slotIndex, Armour armour) {
         if (slotIndex < 0 || slotIndex >= slots.size()) {
+            
+            System.out.println("EquippedGrid: Invalid slot index " + slotIndex);
             return false;
         }
         return slots.get(slotIndex).setItem(armour);
