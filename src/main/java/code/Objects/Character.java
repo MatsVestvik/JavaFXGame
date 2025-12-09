@@ -71,10 +71,23 @@ public class Character {
         switch (armorType.toLowerCase()) {
             case "helmet": return 0;
             case "chestplate": return 2;
+            case "sword": return 3;
             case "pants": return 4;
             case "shield": return 5;
             case "shoes": return 6;
             default: return -1;
+        }
+    }
+
+    private int getLayeringIndexForArmorType(String armorType) {
+        switch (armorType.toLowerCase()) {
+            case "shield": return 5;
+            case "sword": return 4;
+            case "helmet": return 3;
+            case "chestplate": return 2;
+            case "pants": return 1;
+            case "shoes": return 0;
+            default: return 0;
         }
     }
 

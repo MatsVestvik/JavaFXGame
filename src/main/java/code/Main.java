@@ -50,6 +50,7 @@ public class Main extends Application {
         inventoryGrid.addItemToSlot(2, inventory.getArmourByType("Pants"));
         inventoryGrid.addItemToSlot(3, inventory.getArmourByType("Shoes"));
         inventoryGrid.addItemToSlot(4, inventory.getArmourByType("Shield"));
+        inventoryGrid.addItemToSlot(5, inventory.getArmourByType("Sword"));
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
