@@ -30,7 +30,7 @@ public class InventoryGrid {
         grid.setVgap(10);
         grid.setPadding(new Insets(15));
         grid.setAlignment(Pos.CENTER);
-        grid.setStyle("-fx-background-color: #2c3e50; -fx-background-radius: 10;");
+        grid.setStyle("-fx-background-color: #2a2a2aff; -fx-background-radius: 10;");
         
         // Create slots in a grid pattern
         for (int row = 0; row < rows; row++) {

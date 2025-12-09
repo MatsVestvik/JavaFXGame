@@ -31,8 +31,8 @@ class InventorySlot {
     private void createSlot(int size) {
         // Create background
         background = new Rectangle(size, size);
-        background.setFill(Color.rgb(46, 48, 50));
-        background.setStroke(Color.rgb(45, 48, 52));
+        background.setFill(Color.rgb(117, 117, 117));
+        background.setStroke(Color.rgb(0, 0, 0));
         background.setStrokeWidth(2);
         background.setArcWidth(10);
         background.setArcHeight(10);
@@ -47,7 +47,7 @@ class InventorySlot {
         // Create slot number text (for debugging)
         slotNumberText = new Text(String.valueOf(slotIndex + 1));
         slotNumberText.setFont(Font.font(12));
-        slotNumberText.setFill(Color.rgb(149, 165, 166));
+        slotNumberText.setFill(Color.rgb(187, 187, 187));
         
         // Create container
         container = new StackPane();
@@ -56,19 +56,17 @@ class InventorySlot {
         
         // Add hover effects
         container.setOnMouseEntered(e -> {
-            if (isEmpty) {
-                background.setFill(Color.rgb(110, 110, 111));
-            } else {
-                background.setStroke(Color.rgb(74, 73, 75));
-                background.setStrokeWidth(3);
-            }
+            background.setFill(Color.rgb(219, 219, 219));
+        
+            background.setStroke(Color.rgb(70, 70, 70));
+            background.setStrokeWidth(2);
         });
         
         container.setOnMouseExited(e -> {
             background.setFill(isEmpty ? 
-                Color.rgb(61, 61, 61) : 
-                Color.rgb(46, 48, 50));
-            background.setStroke(Color.rgb(45, 48, 52));
+                Color.rgb(117, 117, 117) : 
+                Color.rgb(117, 117, 117));
+            background.setStroke(Color.rgb(0, 0, 0));
             background.setStrokeWidth(2);
         });
         
@@ -95,8 +93,6 @@ class InventorySlot {
             this.itemData = armour.getType();
             this.isEmpty = false;
             
-            // Change background color when occupied
-            background.setFill(Color.rgb(44, 62, 80));
             return true;
         } catch (Exception e) {
             System.out.println("Failed to load image: " + armour.getImagePath());
