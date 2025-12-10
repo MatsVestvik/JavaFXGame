@@ -83,19 +83,28 @@ class EquippedSlot {
         });
     }
     
-    public boolean setItem(Item armour) {
+    public boolean setItem(Item item) {
         try {
-            Image image = new Image(getClass().getResourceAsStream(armour.getImagePath()));
+            Image image = new Image(getClass().getResourceAsStream(item.getImagePath()));
             imageView.setImage(image);
+
+            if (item instanceof Item) {
+                Item armourItem = (Item) item;
+                Item.applyRarityTint(imageView, armourItem.getRarity());
+            } else if (item instanceof Item) {
+                // If Item class has a tint method
+                Item.applyRarityTint(imageView, item.getRarity());
+            }
+
             imageView.setVisible(true);
             slotNumberText.setVisible(false);
-            this.item = armour;
-            this.itemData = armour.getType();
+            this.item = item;
+            this.itemData = item.getType();
             this.isEmpty = false;
             
             return true;
         } catch (Exception e) {
-            System.out.println("Failed to load image: " + armour.getImagePath());
+            System.out.println("Failed to load image: " + item.getImagePath());
             return false;
         }
     }
