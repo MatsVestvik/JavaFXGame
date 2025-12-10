@@ -37,7 +37,9 @@ public class Character {
         return inventoryGrid;
     }
 
-    public void equipArmour(Item item) {
+    public void equipArmour(Item item, int pressedSquare) {
+        
+        
         int slotIndex = getSlotIndexForArmorType(item.getType());
         System.out.println("Equipping...");
         
@@ -55,6 +57,7 @@ public class Character {
         // Equip the armor
         equippedArmour.set(getSlotIndexForArmorType(item.getType()), item);
         equippedGrid.addItemToSlot(slotIndex, item);
+        inventoryGrid.removeItemFromSlot(pressedSquare);
         
         // Add to scene
         if (scene != null) {

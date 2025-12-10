@@ -37,9 +37,13 @@ public class CharacterScene {
     public void removeItem(String imagePath) {
         ImageView imageView = imageViewsByPath.get(imagePath);
         if (imageView != null) {
-            sceneGroup.getChildren().remove(imageView);
+            // Remove from all layers
+            for (Group layer : layers.values()) {
+                layer.getChildren().remove(imageView);
+            }
             imageViewsByPath.remove(imagePath);
             System.out.println("Removed item: " + imagePath);
+            return;
         } else {
             System.out.println("Item not found for removal: " + imagePath);
         }

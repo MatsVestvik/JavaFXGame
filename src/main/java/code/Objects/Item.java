@@ -6,19 +6,21 @@
     import javafx.scene.paint.Color;
 
     public class Item {
+        private String itemName;
         private String imagePath;
         private int shield;
         private int rarity;
         private final String type;
         private final javafx.scene.image.Image img;
 
-        public Item(String imagePath, int rarity, int shield, String type) {
-            this.shield = shield;
+        public Item(String imagePath, int rarity, String type) {
+            this.shield = getShieldByType(type)*rarity;
             this.imagePath = imagePath;
             this.rarity = Math.min(Math.max(rarity, 0), RARITY_COLORS.length - 1);
             this.type = type;
             Image img = new Image(getClass().getResourceAsStream(imagePath));
             this.img = img;
+            this.itemName =  type+rarity;
         }
 
         public String getImagePath() {
@@ -39,9 +41,22 @@
         public String getType() {
             return type;
         }
+        public String getItemName() {
+            return itemName;
+        }
 
+        private int getShieldByType(String type) {
+            switch (type.toLowerCase()) {
+                case "helmet": return 3;
+                case "chestplate": return 5;
+                case "pants": return 4;
+                case "shoes": return 2;
+                case "shield": return 6;
+                default: return 0;
+            }
+        }
         private static final Color[] RARITY_COLORS = {
-            Color.WHITE,  // Placeholder for index 0
+            Color.WHITE,  // Placeholder for index 
             Color.GRAY,      // Common
             Color.WHITE,     // Uncommon
             Color.BLUE,      // Rare
@@ -62,15 +77,16 @@
                 case 0: // Common - Gray
                     break;
                 case 1: // Uncommon - White
+                    colorAdjust.setHue(0.33);
                     colorAdjust.setBrightness(0.1);
                     colorAdjust.setSaturation(-0.2);
                     break;
                 case 2: // Rare - Blue tint
-                    colorAdjust.setHue(0.6); // Blue hue
+                    colorAdjust.setHue(0.66); // Blue hue
                     colorAdjust.setSaturation(0.3);
                     break;
                 case 3: // Epic - Purple tint
-                    colorAdjust.setHue(0.8); // Purple hue
+                    colorAdjust.setHue(0.83); // Purple hue
                     colorAdjust.setSaturation(0.5);
                     colorAdjust.setBrightness(0.1);
                     break;

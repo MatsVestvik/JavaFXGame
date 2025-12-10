@@ -34,8 +34,7 @@ public class Main extends Application {
         // Set click listener
         inventoryGrid.setOnSlotClicked((slotIndex, itemData) -> {
             System.out.println("selected slot: " + slotIndex);
-            character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex));
-            inventoryGrid.removeItemFromSlot(slotIndex);
+            character.equipArmour(inventoryGrid.getItemFromSlot(slotIndex), slotIndex);
             System.out.println(character.getShield());
         });
 
@@ -47,15 +46,22 @@ public class Main extends Application {
         });
         
         // Add some example items
-        inventoryGrid.addItemToSlot(0, inventory.getArmourByType("Helmet"));
-        inventoryGrid.addItemToSlot(1, inventory.getArmourByType("Chestplate"));
-        inventoryGrid.addItemToSlot(2, inventory.getArmourByType("Pants"));
-        inventoryGrid.addItemToSlot(3, inventory.getArmourByType("Shoes"));
-        inventoryGrid.addItemToSlot(4, inventory.getArmourByType("Shield"));
-        inventoryGrid.addItemToSlot(5, inventory.getArmourByType("Sword"));
-        inventoryGrid.addItemToSlot(6, inventory.getArmourByType("Character"));
-        inventoryGrid.addItemToSlot(7, inventory.getArmourByType("Background"));
-        
+        inventoryGrid.addItemToSlot(0, inventory.getItemByItemName("Helmet4"));
+        inventoryGrid.addItemToSlot(1, inventory.getItemByItemName("Chestplate4"));
+        inventoryGrid.addItemToSlot(2, inventory.getItemByItemName("Pants4"));
+        inventoryGrid.addItemToSlot(3, inventory.getItemByItemName("Shoes4"));
+        inventoryGrid.addItemToSlot(4, inventory.getItemByItemName("Shield4"));
+        inventoryGrid.addItemToSlot(5, inventory.getItemByItemName("Sword4"));
+        inventoryGrid.addItemToSlot(6, inventory.getItemByItemName("Character0"));
+        inventoryGrid.addItemToSlot(7, inventory.getItemByItemName("Background0"));
+
+        inventoryGrid.addItemToSlot(8, inventory.getItemByItemName("Helmet2"));
+        inventoryGrid.addItemToSlot(9, inventory.getItemByItemName("Chestplate2"));
+        inventoryGrid.addItemToSlot(10, inventory.getItemByItemName("Pants2"));
+        inventoryGrid.addItemToSlot(11, inventory.getItemByItemName("Shoes2"));
+        inventoryGrid.addItemToSlot(12, inventory.getItemByItemName("Shield2"));
+        inventoryGrid.addItemToSlot(13, inventory.getItemByItemName("Sword2"));
+    
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
         root.setCenter(characterScene.getSceneGroup());  // Character in center

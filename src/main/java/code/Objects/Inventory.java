@@ -7,22 +7,34 @@ public class Inventory {
     private List<Item> items = new ArrayList<>();
 
     public Inventory() {
-        Item helmet = new Item("/resources/Basic_Helmet_2.gif", 4, 10, "Helmet");
-        Item chestplate = new Item("/resources/Basic_Chestplate.gif", 2, 15, "Chestplate");
-        Item pants = new Item("/resources/Basic_Pants.gif", 3, 12, "Pants");
-        Item shoes = new Item("/resources/Basic_Shoes.gif", 4, 8, "Shoes");   
-        Item shield = new Item("/resources/Basic_Shield.gif", 3, 20, "Shield");
-        Item sword = new Item("/resources/Basic_Sword.gif", 4, 25, "Sword");
-        Item character = new Item("/resources/Ninja/Ninja_Character.gif", 0, 0, "Character");
-        Item background = new Item("/resources/Basic_Background.png", 0, 0, "Background");
-        items.add(helmet);
-        items.add(chestplate);
-        items.add(pants);
-        items.add(shoes);
-        items.add(shield);
-        items.add(sword);
-        items.add(character);
-        items.add(background);
+        Item helmet4 = new Item("/resources/Basic_Helmet_2.gif", 4, "Helmet");
+        Item chestplate4 = new Item("/resources/Basic_Chestplate.gif", 4, "Chestplate");
+        Item pants4 = new Item("/resources/Basic_Pants.gif", 4, "Pants");
+        Item shoes4 = new Item("/resources/Basic_Shoes.gif", 4, "Shoes");   
+        Item shield4 = new Item("/resources/Basic_Shield.gif", 4, "Shield");
+        Item sword4 = new Item("/resources/Basic_Sword.gif", 4, "Sword");
+        Item character0 = new Item("/resources/Ninja/Ninja_Character.gif", 0, "Character");
+        Item background0 = new Item("/resources/Basic_Background.png", 0, "Background");
+        Item helmet2 = new Item("/resources/Basic_Helmet_2.gif", 2, "Helmet");
+        Item chestplate2 = new Item("/resources/Basic_Chestplate.gif", 2, "Chestplate");
+        Item pants2 = new Item("/resources/Basic_Pants.gif", 2, "Pants");
+        Item shoes2 = new Item("/resources/Basic_Shoes.gif", 2, "Shoes");   
+        Item shield2 = new Item("/resources/Basic_Shield.gif", 2, "Shield");
+        Item sword2 = new Item("/resources/Basic_Sword.gif", 2, "Sword");
+        items.add(helmet4);
+        items.add(chestplate4);
+        items.add(pants4);
+        items.add(shoes4);
+        items.add(shield4);
+        items.add(sword4);
+        items.add(character0);
+        items.add(background0);
+        items.add(helmet2);
+        items.add(chestplate2);
+        items.add(pants2);
+        items.add(shoes2);
+        items.add(shield2);
+        items.add(sword2);
     }
 
     public List<Item> getItems() {
@@ -33,6 +45,15 @@ public class Inventory {
         for (Item armour : items) {
             if (armour.getType().equals(type)) {
                 return armour;
+            }
+        }
+        return null;
+    }
+
+    public Item getItemByItemName (String name) {
+        for (Item item : items) {
+            if (item.getItemName().equals(name)) {
+                return item;
             }
         }
         return null;
