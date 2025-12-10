@@ -48,12 +48,16 @@ public class Main extends Application {
             character.unequipArmour(equippedGrid.getItemFromSlot(slotIndex));
         });
         Image backGroundImage = new Image("/resources/Dungeon/Dungeon.png");
+        Image enemyImage = new Image("/resources/Ninja/Ninja_Character.gif");
         
         ImageView backGroundImageView = new ImageView(backGroundImage);
         backGroundImageView.setFitWidth(Screen.getPrimary().getBounds().getWidth());
         backGroundImageView.setFitHeight(Screen.getPrimary().getBounds().getHeight()/2);
         Group backgroundGroup = new Group(backGroundImageView);
-        backgroundGroup.getChildren().addAll();
+        ImageView enemyImageView = new ImageView(enemyImage);
+        enemyImageView.setFitHeight(Screen.getPrimary().getBounds().getHeight()/2);
+        enemyImageView.setPreserveRatio(true);
+        backgroundGroup.getChildren().addAll(enemyImageView);
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();

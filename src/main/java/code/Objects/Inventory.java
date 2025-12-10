@@ -49,7 +49,7 @@ public class Inventory {
         addItem("/resources/Basic_Shoes.gif", 1, "Shoes"); 
         addItem("/resources/Basic_Shield.gif", 1, "Shield");
         addItem("/resources/Basic_Sword.gif", 4, "Sword");
-        addItem("/resources/Ninja/Ninja_Character.gif", 0, "Character");
+        addItem("/resources/Basic_Character.gif", 0, "Character");
         addItem("/resources/Basic_Background.png", 0, "Background");
         addItem("/resources/Basic_Helmet_2.gif", 2, "Helmet");
         addItem("/resources/Basic_Chestplate.gif", 3, "Chestplate");
