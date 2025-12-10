@@ -81,19 +81,18 @@
                     colorAdjust.setBrightness(0.1);
                     colorAdjust.setSaturation(-0.2);
                     break;
-                case 2: // Rare - Blue tint
-                    colorAdjust.setHue(0.66); // Blue hue
-                    colorAdjust.setSaturation(0.3);
+                case 2: // Rare - brown 
+                    colorAdjust.setHue(0.15); // Purple hue
+                    colorAdjust.setSaturation(1);
                     break;
-                case 3: // Epic - Purple tint
-                    colorAdjust.setHue(0.83); // Purple hue
-                    colorAdjust.setSaturation(0.5);
-                    colorAdjust.setBrightness(0.1);
-                    break;
-                case 4: // Legendary - Gold tint
-                    colorAdjust.setHue(0.15); // Yellow/Gold hue
-                    colorAdjust.setSaturation(0.7);
+                case 3: // red
+                    colorAdjust.setHue(0.05); // Yellow/Gold hue
+                    colorAdjust.setSaturation(1);
                     colorAdjust.setBrightness(0.2);
+                    break;
+                case 4: // blue
+                    colorAdjust.setHue(1.); // Blue hue
+                    colorAdjust.setSaturation(1.0);
                     break;
                 default:
                     // No tint for unknown rarities
