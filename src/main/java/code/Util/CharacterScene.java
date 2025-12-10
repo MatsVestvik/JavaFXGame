@@ -18,12 +18,20 @@ public class CharacterScene {
     
     // Keep track of ImageViews by their original image path
     private Map<String, ImageView> imageViewsByPath = new HashMap<>();
+    private Map<Integer, Group> layers = new HashMap<>();
     
     public CharacterScene() {
+
         sceneBox = new HBox(20);
         sceneBox.setAlignment(Pos.CENTER);
         sceneBox.setPadding(new Insets(15));
         sceneBox.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-border-width: 1 0 0 0;");
+
+        for (int i = 0; i <= 7; i++) {
+            Group layer = new Group();
+            layers.put(i, layer);
+            sceneGroup.getChildren().add(layer);
+        }
     }
 
     public void removeItem(String imagePath) {
@@ -37,39 +45,62 @@ public class CharacterScene {
         }
     }
 
-    public void addItem(Item armour) {
+    public void addItem(Item item) {
         try {
             // Check if item already exists
-            if (imageViewsByPath.containsKey(armour.getImagePath())) {
-                System.out.println("Item already exists: " + armour.getImagePath());
+            if (imageViewsByPath.containsKey(item.getImagePath())) {
+                System.out.println("Item already exists: " + item.getImagePath());
                 return;
             }
             
-            Image img = new Image(getClass().getResourceAsStream(armour.getImagePath()));
+            Image img = new Image(getClass().getResourceAsStream(item.getImagePath()));
             if (img.isError()) {
-                System.out.println("Failed to load image: " + armour.getImagePath());
+                System.out.println("Failed to load image: " + item.getImagePath());
                 return;
             }
             
-            ImageView imgView = armour.getTintedImageView();
+            ImageView imgView = item.getTintedImageView();
             imgView.setFitWidth(500);
             imgView.setPreserveRatio(true);
             
             // Store reference with the exact imagePath used
-            imageViewsByPath.put(armour.getImagePath(), imgView);
-            sceneGroup.getChildren().add(imgView);
+            imageViewsByPath.put(item.getImagePath(), imgView);
+
+            int layerNumber = getLayerByType(item.getType());
             
-            System.out.println("Added item: " + armour.getImagePath());
+            // Add to the appropriate layer group
+            if (layerNumber >= 0 && layerNumber <= 7) {
+                layers.get(layerNumber).getChildren().add(imgView);
+            } else {
+                // Default to layer 0 if unknown type
+                layers.get(0).getChildren().add(imgView);
+            }
+            
+            System.out.println("Added item: " + item.getImagePath());
             
             // Debug: Print all current items
             System.out.println("Current items in map: " + imageViewsByPath.keySet());
         } catch (Exception e) {
-            System.out.println("Error adding item: " + armour.getImagePath() + " - " + e.getMessage());
+            System.out.println("Error adding item: " + item.getImagePath() + " - " + e.getMessage());
         }
     }
 
     public Group getSceneGroup() {
         return sceneGroup;
+    }
+
+    private int getLayerByType(String type) {
+        switch (type.toLowerCase()) {
+            case "background": return 0;
+            case "character": return 1;
+            case "helmet": return 2;
+            case "chestplate": return 3;
+            case "pants": return 4;
+            case "shoes": return 5;
+            case "sword": return 6;
+            case "shield": return 7;
+            default: return -1;
+        }
     }
     
     // Optional: Method to clear all items

@@ -12,7 +12,7 @@ public class Inventory {
         Item pants = new Item("/resources/Basic_Pants.gif", 3, 12, "Pants");
         Item shoes = new Item("/resources/Basic_Shoes.gif", 4, 8, "Shoes");   
         Item shield = new Item("/resources/Basic_Shield.gif", 3, 20, "Shield");
-        Item sword = new Item("/resources/Basic_Sword.gif", 2, 25, "Sword");
+        Item sword = new Item("/resources/Basic_Sword.gif", 4, 25, "Sword");
         Item character = new Item("/resources/Ninja/Ninja_Character.gif", 0, 0, "Character");
         Item background = new Item("/resources/Basic_Background.png", 0, 0, "Background");
         items.add(helmet);
