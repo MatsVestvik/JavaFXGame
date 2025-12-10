@@ -11,6 +11,7 @@ import java.util.Map;
 
 import code.Objects.Item;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 
 public class CharacterScene {
     HBox sceneBox;
@@ -64,7 +65,7 @@ public class CharacterScene {
             }
             
             ImageView imgView = item.getTintedImageView();
-            imgView.setFitWidth(700);
+            imgView.setFitHeight(Screen.getPrimary().getBounds().getHeight()/2);
             imgView.setPreserveRatio(true);
             
             // Store reference with the exact imagePath used

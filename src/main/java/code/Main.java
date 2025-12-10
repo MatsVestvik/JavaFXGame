@@ -1,8 +1,10 @@
 package code;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -45,20 +47,22 @@ public class Main extends Application {
             System.out.println("unequipping slot: " + slotIndex);
             character.unequipArmour(equippedGrid.getItemFromSlot(slotIndex));
         });
+        Image backGroundImage = new Image("/resources/Dungeon/Dungeon.png");
+        
+        ImageView backGroundImageView = new ImageView(backGroundImage);
+        backGroundImageView.setFitWidth(Screen.getPrimary().getBounds().getWidth());
+        backGroundImageView.setFitHeight(Screen.getPrimary().getBounds().getHeight()/2);
+        Group backgroundGroup = new Group(backGroundImageView);
+        backgroundGroup.getChildren().addAll();
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
         root.setCenter(characterScene.getSceneGroup());  // Character in center
         root.setRight(inventoryGrid.getGrid()); // Inventory on the right
-        root.setLeft(character.getEquippedGrid().getGrid()); // Equipped items on the left
-        
-        /*
-        Screen screen = Screen.getPrimary();
-        double maxheight = screen.getBounds().getHeight();
-        double maxwidth = screen.getBounds().getWidth();
-        */
+        root.setLeft(character.getEquippedGrid().getGrid());
+        root.setTop(backgroundGroup);  // Equipped items on the left
 
-        Scene scene = new Scene(root, Color.BLACK); // Increased height for button
+        Scene scene = new Scene(root, Color.BLACK); 
         
         Image icon = new Image("/resources/Basic_Character.gif");
         primaryStage.getIcons().add(icon);

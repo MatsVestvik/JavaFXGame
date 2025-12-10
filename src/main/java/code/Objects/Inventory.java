@@ -44,7 +44,7 @@ public class Inventory {
         this.inventoryGrid = inventoryGrid;
 
         addItem("/resources/Basic_Helmet_2.gif", 4, "Helmet");
-        addItem("/resources/Basic_Chestplate.gif", 4, "Chestplate");
+        addItem("/resources/Basic_Chestplate.gif", 1, "Chestplate");
         addItem("/resources/Basic_Pants.gif", 4, "Pants");
         addItem("/resources/Basic_Shoes.gif", 1, "Shoes"); 
         addItem("/resources/Basic_Shield.gif", 1, "Shield");
