@@ -55,10 +55,10 @@ public class InventoryGrid {
     }
     
     // Add item to first available slot
-    public int addItemToFirstAvailable(Item armour) {
+    public int addItemToFirstAvailable(Item item) {
         for (InventorySlot slot : slots) {
             if (slot.isEmpty()) {
-                slot.setItem(armour);
+                slot.setItem(item);
                 return slot.getSlotIndex();
             }
         }

@@ -64,7 +64,7 @@ public class CharacterScene {
             }
             
             ImageView imgView = item.getTintedImageView();
-            imgView.setFitWidth(500);
+            imgView.setFitWidth(700);
             imgView.setPreserveRatio(true);
             
             // Store reference with the exact imagePath used

@@ -24,10 +24,11 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        Inventory inventory = new Inventory();
+        
 
         Character character = new Character();
         CharacterScene characterScene = character.getCharacterScene();
+        Inventory inventory = new Inventory(character);
         
         InventoryGrid inventoryGrid = character.getInventoryGrid();
         
@@ -45,23 +46,6 @@ public class Main extends Application {
             character.unequipArmour(equippedGrid.getItemFromSlot(slotIndex));
         });
         
-        // Add some example items
-        inventoryGrid.addItemToSlot(0, inventory.getItemByItemName("Helmet4"));
-        inventoryGrid.addItemToSlot(1, inventory.getItemByItemName("Chestplate4"));
-        inventoryGrid.addItemToSlot(2, inventory.getItemByItemName("Pants4"));
-        inventoryGrid.addItemToSlot(3, inventory.getItemByItemName("Shoes4"));
-        inventoryGrid.addItemToSlot(4, inventory.getItemByItemName("Shield4"));
-        inventoryGrid.addItemToSlot(5, inventory.getItemByItemName("Sword4"));
-        inventoryGrid.addItemToSlot(6, inventory.getItemByItemName("Character0"));
-        inventoryGrid.addItemToSlot(7, inventory.getItemByItemName("Background0"));
-
-        inventoryGrid.addItemToSlot(8, inventory.getItemByItemName("Helmet2"));
-        inventoryGrid.addItemToSlot(9, inventory.getItemByItemName("Chestplate2"));
-        inventoryGrid.addItemToSlot(10, inventory.getItemByItemName("Pants2"));
-        inventoryGrid.addItemToSlot(11, inventory.getItemByItemName("Shoes2"));
-        inventoryGrid.addItemToSlot(12, inventory.getItemByItemName("Shield2"));
-        inventoryGrid.addItemToSlot(13, inventory.getItemByItemName("Sword2"));
-    
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
         root.setCenter(characterScene.getSceneGroup());  // Character in center

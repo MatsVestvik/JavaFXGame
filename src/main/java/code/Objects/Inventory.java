@@ -3,10 +3,14 @@ package code.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import code.Inventory.InventoryGrid;
+
 public class Inventory {
     private List<Item> items = new ArrayList<>();
+    private InventoryGrid inventoryGrid;
 
-    public Inventory() {
+    public Inventory(Character character) {
+        /*
         Item helmet4 = new Item("/resources/Basic_Helmet_2.gif", 4, "Helmet");
         Item chestplate4 = new Item("/resources/Basic_Chestplate.gif", 4, "Chestplate");
         Item pants4 = new Item("/resources/Basic_Pants.gif", 4, "Pants");
@@ -35,6 +39,30 @@ public class Inventory {
         items.add(shoes2);
         items.add(shield2);
         items.add(sword2);
+        */
+        InventoryGrid inventoryGrid = character.getInventoryGrid();
+        this.inventoryGrid = inventoryGrid;
+
+        addItem("/resources/Basic_Helmet_2.gif", 4, "Helmet");
+        addItem("/resources/Basic_Chestplate.gif", 4, "Chestplate");
+        addItem("/resources/Basic_Pants.gif", 4, "Pants");
+        addItem("/resources/Basic_Shoes.gif", 1, "Shoes"); 
+        addItem("/resources/Basic_Shield.gif", 1, "Shield");
+        addItem("/resources/Basic_Sword.gif", 4, "Sword");
+        addItem("/resources/Ninja/Ninja_Character.gif", 0, "Character");
+        addItem("/resources/Basic_Background.png", 0, "Background");
+        addItem("/resources/Basic_Helmet_2.gif", 2, "Helmet");
+        addItem("/resources/Basic_Chestplate.gif", 3, "Chestplate");
+        addItem("/resources/Basic_Pants.gif", 3, "Pants");
+        addItem("/resources/Basic_Shoes.gif", 2, "Shoes");
+        addItem("/resources/Basic_Shield.gif", 2, "Shield");
+        addItem("/resources/Basic_Sword.gif", 2, "Sword");
+    }
+
+    public void addItem(String imagePath, int rarity, String type) {
+        Item item = new Item(imagePath, rarity, type);
+        items.add(item);
+        inventoryGrid.addItemToFirstAvailable(item);
     }
 
     public List<Item> getItems() {
