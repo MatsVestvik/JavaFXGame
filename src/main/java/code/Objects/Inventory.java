@@ -4,29 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    private List<Armour> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     public Inventory() {
-        Armour helmet = new Armour("/resources/Basic_Helmet_2.gif", 1, 10, "Helmet");
-        Armour chestplate = new Armour("/resources/Basic_Chestplate.gif", 1, 15, "Chestplate");
-        Armour pants = new Armour("/resources/Basic_Pants.gif", 1, 12, "Pants");
-        Armour shoes = new Armour("/resources/Basic_Shoes.gif", 1, 8, "Shoes");   
-        Armour shield = new Armour("/resources/Basic_Shield.gif", 1, 20, "Shield");
-        Armour sword = new Armour("/resources/Basic_Sword.gif", 1, 25, "Sword");
+        Item helmet = new Item("/resources/Basic_Helmet_2.gif", 4, 10, "Helmet");
+        Item chestplate = new Item("/resources/Basic_Chestplate.gif", 2, 15, "Chestplate");
+        Item pants = new Item("/resources/Basic_Pants.gif", 3, 12, "Pants");
+        Item shoes = new Item("/resources/Basic_Shoes.gif", 4, 8, "Shoes");   
+        Item shield = new Item("/resources/Basic_Shield.gif", 3, 20, "Shield");
+        Item sword = new Item("/resources/Basic_Sword.gif", 2, 25, "Sword");
+        Item character = new Item("/resources/Ninja/Ninja_Character.gif", 0, 0, "Character");
+        Item background = new Item("/resources/Basic_Background.png", 0, 0, "Background");
         items.add(helmet);
         items.add(chestplate);
         items.add(pants);
         items.add(shoes);
         items.add(shield);
         items.add(sword);
+        items.add(character);
+        items.add(background);
     }
 
-    public List<Armour> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public Armour getArmourByType(String type) {
-        for (Armour armour : items) {
+    public Item getArmourByType(String type) {
+        for (Item armour : items) {
             if (armour.getType().equals(type)) {
                 return armour;
             }

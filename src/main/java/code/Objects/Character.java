@@ -17,7 +17,7 @@ public class Character {
     ColorAdjust rarityEffect = new ColorAdjust();
 
     private int shield = 0;
-    private List<Armour> equippedArmour = new ArrayList<>();
+    private List<Item> equippedArmour = new ArrayList<>();
 
     public Character() {
         for (int i = 0; i < 8; i++) {
@@ -37,44 +37,46 @@ public class Character {
         return inventoryGrid;
     }
 
-    public void equipArmour(Armour armour) {
-        int slotIndex = getSlotIndexForArmorType(armour.getType());
+    public void equipArmour(Item item) {
+        int slotIndex = getSlotIndexForArmorType(item.getType());
         System.out.println("Equipping...");
         
         if (slotIndex == -1) {
-            System.out.println("Invalid armor type: " + armour.getType());
+            System.out.println("Invalid armor type: " + item.getType());
             return;
         }
         
         // Check if slot is occupied
-        if (equippedArmour.get(getSlotIndexForArmorType(armour.getType())) != null) {
-            System.out.println(armour.getType() + " slot is already occupied!");
+        if (equippedArmour.get(getSlotIndexForArmorType(item.getType())) != null) {
+            System.out.println(item.getType() + " slot is already occupied!");
             return;
         }
-        System.out.println("Equipped " + armour.getType() + " in slot " + slotIndex);
+        System.out.println("Equipped " + item.getType() + " in slot " + slotIndex);
         // Equip the armor
-        equippedArmour.set(getSlotIndexForArmorType(armour.getType()), armour);
-        equippedGrid.addItemToSlot(slotIndex, armour);
+        equippedArmour.set(getSlotIndexForArmorType(item.getType()), item);
+        equippedGrid.addItemToSlot(slotIndex, item);
         
         // Add to scene
         if (scene != null) {
-            scene.addItem(armour.getImagePath());
+            scene.addItem(item);
         } else {
             System.out.println("Scene is not set!");
         }
         
         // Update shield
-        shield += armour.getShield();
+        shield += item.getShield();
     }
 
     private int getSlotIndexForArmorType(String armorType) {
         switch (armorType.toLowerCase()) {
             case "helmet": return 0;
+            case "character": return 1;
             case "chestplate": return 2;
             case "sword": return 3;
             case "pants": return 4;
             case "shield": return 5;
             case "shoes": return 6;
+            case "background": return 7;
             default: return -1;
         }
     }
@@ -91,7 +93,7 @@ public class Character {
         }
     }
 
-    public void unequipArmour(Armour armour) {
+    public void unequipArmour(Item armour) {
         if (equippedArmour.contains(armour)) {
             int index = getSlotIndexForArmorType(armour.getType());
             equippedArmour.set(index, null);

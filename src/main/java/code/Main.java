@@ -2,14 +2,18 @@ package code;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import code.Inventory.EquippedGrid;
 import code.Inventory.InventoryGrid;
 import code.Objects.Character;
 import code.Objects.Inventory;
 import code.Util.CharacterScene;
-import code.Objects.Armour;
+import code.Objects.Item;
 
 public class Main extends Application {
 
@@ -24,8 +28,6 @@ public class Main extends Application {
 
         Character character = new Character();
         CharacterScene characterScene = character.getCharacterScene();
-        characterScene.addItem("/resources/Basic_Background.png");
-        characterScene.addItem("/resources/Basic_Character.gif");
         
         InventoryGrid inventoryGrid = character.getInventoryGrid();
         
@@ -51,6 +53,8 @@ public class Main extends Application {
         inventoryGrid.addItemToSlot(3, inventory.getArmourByType("Shoes"));
         inventoryGrid.addItemToSlot(4, inventory.getArmourByType("Shield"));
         inventoryGrid.addItemToSlot(5, inventory.getArmourByType("Sword"));
+        inventoryGrid.addItemToSlot(6, inventory.getArmourByType("Character"));
+        inventoryGrid.addItemToSlot(7, inventory.getArmourByType("Background"));
         
         // Use BorderPane to organize layout
         BorderPane root = new BorderPane();
@@ -58,10 +62,27 @@ public class Main extends Application {
         root.setRight(inventoryGrid.getGrid()); // Inventory on the right
         root.setLeft(character.getEquippedGrid().getGrid()); // Equipped items on the left
         
-        Scene scene = new Scene(root, 1100, 500); // Increased height for button
+        /*
+        Screen screen = Screen.getPrimary();
+        double maxheight = screen.getBounds().getHeight();
+        double maxwidth = screen.getBounds().getWidth();
+        */
+        Text armourLabel = new Text();
+        armourLabel.setText("jfidslkjfipojoxsja");
+        armourLabel.setX(50);
+        armourLabel.setY(10);
+        characterScene.getSceneGroup().getChildren().add(armourLabel);
+
+        Scene scene = new Scene(root, Color.BLACK); // Increased height for button
         
-        primaryStage.setTitle("Character with Armour Overlay and Controls");
+        Image icon = new Image("/resources/Basic_Character.gif");
+        primaryStage.getIcons().add(icon);
+
+        primaryStage.setTitle("Dungeons & Doors");
         primaryStage.setScene(scene);
+        
+        //primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
     

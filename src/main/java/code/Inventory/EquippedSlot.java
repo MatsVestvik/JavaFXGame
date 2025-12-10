@@ -1,6 +1,6 @@
 package code.Inventory;
 
-import code.Objects.Armour;
+import code.Objects.Item;
 import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +17,7 @@ class EquippedSlot {
     private ImageView imageView;
     private Text slotNumberText;
     private Object itemData;
-    private Armour item; 
+    private Item item; 
     private int slotIndex;
     private boolean isEmpty;
     
@@ -83,7 +83,7 @@ class EquippedSlot {
         });
     }
     
-    public boolean setItem(Armour armour) {
+    public boolean setItem(Item armour) {
         try {
             Image image = new Image(getClass().getResourceAsStream(armour.getImagePath()));
             imageView.setImage(image);
@@ -122,7 +122,7 @@ class EquippedSlot {
         this.clickListenerEquipped = listener;
     }
 
-    public boolean setItem(String imagePath, Armour armour) {
+    public boolean setItem(String imagePath, Item armour) {
         try {
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             imageView.setImage(image);
@@ -139,7 +139,7 @@ class EquippedSlot {
         }
     }
     
-    public Armour getArmour() {
+    public Item getArmour() {
         return item;
     }
     

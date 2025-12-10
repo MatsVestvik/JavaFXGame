@@ -6,7 +6,7 @@ import javafx.scene.layout.GridPane;
 import java.util.ArrayList;
 import java.util.List;
 
-import code.Objects.Armour;
+import code.Objects.Item;
 
 public class EquippedGrid {
     private GridPane grid;
@@ -50,7 +50,7 @@ public class EquippedGrid {
     }
     
     // Add an item to a specific slot
-    public boolean addItemToSlot(int slotIndex, Armour armour) {
+    public boolean addItemToSlot(int slotIndex, Item armour) {
         if (slotIndex < 0 || slotIndex >= slots.size()) {
             
             System.out.println("EquippedGrid: Invalid slot index " + slotIndex);
@@ -60,7 +60,7 @@ public class EquippedGrid {
     }
     
     // Add item to first available slot
-    public int addItemToFirstAvailable(Armour armour) {
+    public int addItemToFirstAvailable(Item armour) {
         for (EquippedSlot slot : slots) {
             if (slot.isEmpty()) {
                 slot.setItem(armour);
@@ -70,8 +70,8 @@ public class EquippedGrid {
         return -1; // No available slots
     }
 
-    public Armour getItemFromSlot(int slotIndex) {
-        Armour armour = slots.get(slotIndex).getArmour();
+    public Item getItemFromSlot(int slotIndex) {
+        Item armour = slots.get(slotIndex).getArmour();
         return armour;
     }
     

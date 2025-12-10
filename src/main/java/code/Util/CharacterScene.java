@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 import java.util.HashMap;
 import java.util.Map;
 
+import code.Objects.Item;
+import javafx.scene.text.Text;
+
 public class CharacterScene {
     HBox sceneBox;
     public Group sceneGroup = new Group();
@@ -34,34 +37,34 @@ public class CharacterScene {
         }
     }
 
-    public void addItem(String imagePath) {
+    public void addItem(Item armour) {
         try {
             // Check if item already exists
-            if (imageViewsByPath.containsKey(imagePath)) {
-                System.out.println("Item already exists: " + imagePath);
+            if (imageViewsByPath.containsKey(armour.getImagePath())) {
+                System.out.println("Item already exists: " + armour.getImagePath());
                 return;
             }
             
-            Image img = new Image(getClass().getResourceAsStream(imagePath));
+            Image img = new Image(getClass().getResourceAsStream(armour.getImagePath()));
             if (img.isError()) {
-                System.out.println("Failed to load image: " + imagePath);
+                System.out.println("Failed to load image: " + armour.getImagePath());
                 return;
             }
             
-            ImageView imgView = new ImageView(img);
+            ImageView imgView = armour.getTintedImageView();
             imgView.setFitWidth(500);
             imgView.setPreserveRatio(true);
             
             // Store reference with the exact imagePath used
-            imageViewsByPath.put(imagePath, imgView);
+            imageViewsByPath.put(armour.getImagePath(), imgView);
             sceneGroup.getChildren().add(imgView);
             
-            System.out.println("Added item: " + imagePath);
+            System.out.println("Added item: " + armour.getImagePath());
             
             // Debug: Print all current items
             System.out.println("Current items in map: " + imageViewsByPath.keySet());
         } catch (Exception e) {
-            System.out.println("Error adding item: " + imagePath + " - " + e.getMessage());
+            System.out.println("Error adding item: " + armour.getImagePath() + " - " + e.getMessage());
         }
     }
 
