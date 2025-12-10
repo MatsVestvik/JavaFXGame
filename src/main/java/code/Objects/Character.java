@@ -3,7 +3,7 @@ package code.Objects;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.effect.ColorAdjust;
-
+import javafx.scene.text.Text;
 import code.Util.CharacterScene;
 import code.Inventory.EquippedGrid;
 import code.Inventory.InventoryGrid;
@@ -12,6 +12,7 @@ public class Character {
     public CharacterScene scene = new CharacterScene();
     private EquippedGrid equippedGrid = new EquippedGrid(4, 2, 80);
     private InventoryGrid inventoryGrid = new InventoryGrid(4, 4, 80);
+    private Text armourLabel = new Text();
 
     
     ColorAdjust rarityEffect = new ColorAdjust();
@@ -20,6 +21,11 @@ public class Character {
     private List<Item> equippedArmour = new ArrayList<>();
 
     public Character() {
+        armourLabel.setX(50);
+        armourLabel.setY(10);
+        armourLabel.setText("Shield: " + shield);
+        scene.getSceneGroup().getChildren().add(armourLabel);
+
         for (int i = 0; i < 8; i++) {
             equippedArmour.add(null);
         }
@@ -35,6 +41,10 @@ public class Character {
 
     public InventoryGrid getInventoryGrid() {
         return inventoryGrid;
+    }
+
+    public Text getArmourLabel() {
+        return armourLabel;
     }
 
     public void equipArmour(Item item, int pressedSquare) {
@@ -68,6 +78,7 @@ public class Character {
         
         // Update shield
         shield += item.getShield();
+        armourLabel.setText("Shield: " + shield);
     }
 
     private int getSlotIndexForArmorType(String armorType) {
@@ -104,6 +115,7 @@ public class Character {
             scene.removeItem(armour.getImagePath());
             equippedGrid.removeItemFromSlot(index);
             inventoryGrid.addItemToFirstAvailable(armour);
+            armourLabel.setText("Shield: " + shield);
         }
     }
 

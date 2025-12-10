@@ -73,11 +73,6 @@ public class Main extends Application {
         double maxheight = screen.getBounds().getHeight();
         double maxwidth = screen.getBounds().getWidth();
         */
-        Text armourLabel = new Text();
-        armourLabel.setText("jfidslkjfipojoxsja");
-        armourLabel.setX(50);
-        armourLabel.setY(10);
-        characterScene.getSceneGroup().getChildren().add(armourLabel);
 
         Scene scene = new Scene(root, Color.BLACK); // Increased height for button
         
